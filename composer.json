@@ -12,10 +12,11 @@
         "bosnadev/repositories": "^0.13.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
-        "laravel/scout": "~v7.0.0",
+        "laravel/scout": "~5.0.0",
         "laravel/tinker": "^1.0",
         "nesbot/carbon": "^2.35",
-        "prettus/l5-repository": "^2.6"
+        "prettus/l5-repository": "^2.6",
+        "tamayo/laravel-scout-elastic": "~4.0.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
