@@ -73,3 +73,11 @@ Route::prefix('user')->group(function(){
     Route::post('{user}/dofan','UserController@dofan');
 });
 
+//专题
+Route::prefix('topic')->group(function(){
+
+    //专题详情页
+    Route::get('{topic}','TopicController@show');
+    //投稿
+    Route::post('{topic}/submit','TopicController@submit');
+});

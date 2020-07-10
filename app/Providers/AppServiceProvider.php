@@ -2,14 +2,16 @@
 
 namespace App\Providers;
 
+use App\Models\topics;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
+     * 在所有注册之前调用
      * @return void
      */
     public function register()
@@ -19,12 +21,17 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
-     *
+     * 在所有注册完之后调用
      * @return void
      */
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        View::composer('layout.sidebar',function ($view){
+            $topics = topics::all();
+            $view->with('topics',$topics);
+        });
 
         //文章接口绑定
         $this->app
@@ -60,5 +67,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app
             ->bind('App\Repositories\Interfaces\UserRepositoryInterface',
                 'App\Repositories\User\UserReposity');
+
+        //专题
+        $this->app
+            ->bind('App\Repositories\Interfaces\TopicRepositoryInterface',
+                'App\Repositories\Topic\TopicRepository');
     }
 }
